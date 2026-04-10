@@ -2,16 +2,21 @@ import { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 import { getProject } from '@theatre/core';
-import { SheetProvider, editable as e } from '@theatre/r3f';
+import { SheetProvider, editable } from '@theatre/r3f';
+import { PerspectiveCamera } from '@react-three/drei';
 import { EffectComposer, Glitch, Bloom, Noise, Vignette } from '@react-three/postprocessing';
 import { GlitchMode } from 'postprocessing';
+
+const EditableCamera = editable(PerspectiveCamera, 'perspectiveCamera');
 
 // Dynamically handle studio for Vite
 if (import.meta.env.DEV) {
   import('@theatre/studio').then((module) => {
     const studio: any = module.default || module;
-    if (typeof studio.initialize === 'function') {
+    if (studio && typeof studio.initialize === 'function') {
       studio.initialize();
+      // Also hide UI initially to avoid clutter if desired
+      // studio.ui.hide();
       import('@theatre/r3f/dist/extension').then((r3fExt) => {
         if (typeof studio.extend === 'function') studio.extend(r3fExt.default || r3fExt);
       });
@@ -114,7 +119,7 @@ function Particles({ temperature, rtcfActive }: ParticlesProps) {
   });
 
   return (
-    <e.points theatreKey="Particles" ref={pointsRef}>
+    <editable.points theatreKey="Particles" ref={pointsRef}>
       <bufferGeometry>
         <bufferAttribute
           attach="attributes-position"
@@ -133,7 +138,7 @@ function Particles({ temperature, rtcfActive }: ParticlesProps) {
         blending={THREE.AdditiveBlending}
         depthWrite={false}
       />
-    </e.points>
+    </editable.points>
   );
 }
 
@@ -141,7 +146,7 @@ export default function NeuralStream({ temperature = 0.7, safetyActive = false, 
   return (
     <Canvas>
       <SheetProvider sheet={mainSheet}>
-        <e.perspectiveCamera theatreKey="CinematicCamera" makeDefault position={[0, 0, 15]} fov={60} />
+        <EditableCamera theatreKey="CinematicCamera" makeDefault position={[0, 0, 15]} fov={60} />
         <ambientLight intensity={safetyActive ? 0.2 : 0.5} color={safetyActive ? "#ffaa00" : "#ffffff"} />
         <pointLight position={[10, 10, 10]} intensity={safetyActive ? 2 : 1} color={safetyActive ? "#ff4400" : "#ffffff"} />
         
