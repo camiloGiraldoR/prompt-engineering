@@ -30,7 +30,7 @@ export default function AnatomySection() {
 
   return (
     <section ref={container} className="section-container" style={{ minHeight: '80vh', maxWidth: '1000px' }}>
-      <h2 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '3rem', alignSelf: 'flex-start' }}>Anatomía de un Prompt Perfecto</h2>
+      <h2 className="text-mask" style={{ fontSize: '4rem', marginBottom: '3rem', alignSelf: 'flex-start' }}>Anatomía de un Prompt Perfecto</h2>
       
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
         {cards.map((card, i) => (

@@ -1,9 +1,13 @@
-import { useState, useRef } from 'react';
+import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 
-export default function ConfigDashboardSection() {
-  const [temp, setTemp] = useState(0.7);
+interface ConfigDashboardProps {
+  temperature: number;
+  onTemperatureChange: (val: number) => void;
+}
+
+export default function ConfigDashboardSection({ temperature, onTemperatureChange }: ConfigDashboardProps) {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -22,7 +26,7 @@ export default function ConfigDashboardSection() {
 
   return (
     <section ref={container} className="section-container" style={{ minHeight: '80vh', maxWidth: '1000px' }}>
-      <h2 className="dash-element text-gradient" style={{ fontSize: '2.5rem', marginBottom: '2rem', alignSelf: 'flex-start' }}>Configuration Dashboard</h2>
+      <h2 className="dash-element text-mask" style={{ fontSize: '3rem', marginBottom: '2rem', alignSelf: 'flex-start' }}>Configuration Dashboard</h2>
       
       <div className="dash-element glass-panel" style={{ width: '100%', padding: '2rem', display: 'flex', gap: '2rem', flexWrap: 'wrap' }}>
         <div style={{ flex: '1 1 300px' }}>
@@ -31,9 +35,26 @@ export default function ConfigDashboardSection() {
           <div style={{ marginBottom: '1.5rem' }}>
             <label style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
               <span>Temperature (Creatividad)</span>
-              <span style={{ color: 'var(--neon-cyan)', fontWeight: 'bold' }}>{temp}</span>
+              <span style={{ color: 'var(--neon-cyan)', fontWeight: 'bold' }}>{temperature}</span>
             </label>
-            <input type="range" min="0" max="2" step="0.1" value={temp} onChange={(e) => setTemp(parseFloat(e.target.value))} style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--neon-cyan)' }} />
+            <input 
+              type="range" 
+              min="0" 
+              max="2" 
+              step="0.1" 
+              value={temperature} 
+              onChange={(e) => {
+                const val = parseFloat(e.target.value);
+                // @ts-ignore
+                if (document.startViewTransition) {
+                   // @ts-ignore
+                   document.startViewTransition(() => onTemperatureChange(val));
+                } else {
+                   onTemperatureChange(val);
+                }
+              }} 
+              style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--neon-cyan)' }} 
+            />
           </div>
 
           <div style={{ marginBottom: '1.5rem', color: 'var(--text-muted)', lineHeight: 1.8 }}>

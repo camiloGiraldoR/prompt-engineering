@@ -29,7 +29,7 @@ export default function SafetySection() {
 
   return (
     <section ref={container} className="section-container" style={{ minHeight: '70vh', maxWidth: '1000px' }}>
-      <h2 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '1rem', alignSelf: 'flex-start' }}>Safety & Governance</h2>
+      <h2 className="text-mask" style={{ fontSize: '5rem', marginBottom: '1rem', alignSelf: 'flex-start', lineHeight: 1 }}>Safety & Governance</h2>
       <p style={{ color: 'var(--text-muted)', marginBottom: '3rem', fontSize: '1.2rem', alignSelf: 'flex-start' }}>
         Riesgos críticos adicionales que deben mitigarse: <span style={{ color: 'white' }}>Jailbreaking</span>, <span style={{ color: 'white' }}>Prompt Leaking</span> y <span style={{ color: 'white' }}>Data Poisoning</span>.
       </p>

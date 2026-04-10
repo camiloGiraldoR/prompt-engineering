@@ -35,8 +35,8 @@ export default function TechniquesSection() {
   ];
 
   return (
-    <section ref={container} className="section-container tech-panel" style={{ background: '#0a0a1a', borderTop: '1px solid rgba(0,243,255,0.2)', borderBottom: '1px solid rgba(0,243,255,0.2)' }}>
-      <h2 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '3rem' }}>Metodologías y Técnicas</h2>
+    <section ref={container} className="section-container tech-panel" style={{ background: 'transparent', borderTop: '1px solid rgba(0,243,255,0.1)', borderBottom: '1px solid rgba(0,243,255,0.1)' }}>
+      <h2 className="text-mask" style={{ fontSize: '5rem', marginBottom: '3rem', lineHeight: 1 }}>Metodologías y Técnicas</h2>
       
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '800px' }}>
         {tech.map((t, i) => (

@@ -30,7 +30,7 @@ export default function BestPracticesSection() {
   return (
     <section ref={container} className="section-container" style={{ minHeight: '80vh', maxWidth: '800px', display: 'flex', alignItems: 'center' }}>
       <div className="glass-panel" style={{ padding: '3rem', width: '100%' }}>
-        <h2 className="text-gradient" style={{ fontSize: '2.5rem', marginBottom: '2rem' }}>Mejores Prácticas (Checklist)</h2>
+        <h2 className="text-mask" style={{ fontSize: '4rem', marginBottom: '2rem', lineHeight: 1 }}>Mejores Prácticas</h2>
         <ul style={{ listStyle: 'none' }}>
           {practices.map((practice, i) => (
             <li key={i} className="bp-item" style={{ fontSize: '1.3rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>

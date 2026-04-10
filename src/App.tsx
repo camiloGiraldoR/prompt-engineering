@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -14,6 +14,10 @@ import BestPracticesSection from './components/Sections/BestPracticesSection';
 gsap.registerPlugin(ScrollTrigger);
 
 function App() {
+  const [temperature, setTemperature] = useState(0.7);
+  const [safetyActive, setSafetyActive] = useState(false);
+  const [rtcfActive, setRtcfActive] = useState(false);
+
   useEffect(() => {
     const lenis = new Lenis({
       duration: 1.2,
@@ -31,6 +35,28 @@ function App() {
 
     gsap.ticker.lagSmoothing(0);
 
+    // RTCF State trigger
+    ScrollTrigger.create({
+      trigger: '#rtcf-section',
+      start: 'top 50%',
+      end: 'bottom 50%',
+      onEnter: () => setRtcfActive(true),
+      onLeave: () => setRtcfActive(false),
+      onEnterBack: () => setRtcfActive(true),
+      onLeaveBack: () => setRtcfActive(false),
+    });
+
+    // Safety State trigger
+    ScrollTrigger.create({
+      trigger: '#safety-section',
+      start: 'top 60%',
+      end: 'bottom 40%',
+      onEnter: () => setSafetyActive(true),
+      onLeave: () => setSafetyActive(false),
+      onEnterBack: () => setSafetyActive(true),
+      onLeaveBack: () => setSafetyActive(false),
+    });
+
     return () => {
       lenis.destroy();
       gsap.ticker.remove(lenis.raf);
@@ -40,15 +66,19 @@ function App() {
   return (
     <div className="app-container">
       <div className="canvas-container">
-        <NeuralStream />
+        <NeuralStream temperature={temperature} safetyActive={safetyActive} rtcfActive={rtcfActive} />
       </div>
       <div className="content-layer">
         <HeroSection />
         <DefinitionSection />
         <AnatomySection />
-        <TechniquesSection />
-        <ConfigDashboardSection />
-        <SafetySection />
+        <div id="rtcf-section">
+          <TechniquesSection />
+        </div>
+        <ConfigDashboardSection temperature={temperature} onTemperatureChange={setTemperature} />
+        <div id="safety-section">
+          <SafetySection />
+        </div>
         <BestPracticesSection />
       </div>
     </div>
