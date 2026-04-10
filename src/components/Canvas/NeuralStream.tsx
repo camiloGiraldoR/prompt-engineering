@@ -28,11 +28,10 @@ const theatreProject = getProject('NeuralStream Cinematic');
 const mainSheet = theatreProject.sheet('Main Sequence');
 
 interface ParticlesProps {
-  temperature: number;
   rtcfActive: boolean;
 }
 
-function Particles({ temperature, rtcfActive }: ParticlesProps) {
+function Particles({ rtcfActive }: ParticlesProps) {
   const pointsRef = useRef<THREE.Points>(null!);
   const count = 10000;
 
@@ -130,7 +129,7 @@ function Particles({ temperature, rtcfActive }: ParticlesProps) {
   );
 }
 
-export default function NeuralStream({ temperature = 0.7, safetyActive = false, rtcfActive = false }) {
+export default function NeuralStream({ safetyActive = false, rtcfActive = false }) {
   return (
     <Canvas>
       <SheetProvider sheet={mainSheet}>
@@ -138,22 +137,11 @@ export default function NeuralStream({ temperature = 0.7, safetyActive = false, 
         <ambientLight intensity={safetyActive ? 0.2 : 0.5} color={safetyActive ? "#ffaa00" : "#ffffff"} />
         <pointLight position={[10, 10, 10]} intensity={safetyActive ? 2 : 1} color={safetyActive ? "#ff4400" : "#ffffff"} />
         
-        <Particles temperature={temperature} rtcfActive={rtcfActive} />
+        <Particles rtcfActive={rtcfActive} />
 
         <EffectComposer>
           <Bloom luminanceThreshold={1} mipmapBlur intensity={0.5} />
-          <Noise opacity={0.05} />
           <Vignette eskil={false} offset={0.1} darkness={1.1} />
-          {safetyActive && (
-            <Glitch
-              delay={new THREE.Vector2(0.2, 0.4)}
-              duration={new THREE.Vector2(0.1, 0.2)}
-              strength={new THREE.Vector2(0.1, 0.3)}
-              mode={GlitchMode.SPORADIC}
-              active
-              ratio={0.85}
-            />
-          )}
         </EffectComposer>
       </SheetProvider>
     </Canvas>
