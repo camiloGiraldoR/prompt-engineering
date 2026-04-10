@@ -47,16 +47,22 @@ function Particles({ temperature, rtcfActive }: ParticlesProps) {
     return pos;
   }, [count]);
 
-  // 4 target nodes for RTCF
-  const rtcfNodes = useMemo(() => {
-    const nodes = [
-      new THREE.Vector3(-7, 5, 0),
-      new THREE.Vector3(7, 5, 0),
-      new THREE.Vector3(-7, -5, 0),
-      new THREE.Vector3(7, -5, 0)
-    ];
-    return nodes;
-  }, []);
+  // Unified Brain Target Positions
+  const brainPositions = useMemo(() => {
+    const pos = new Float32Array(count * 3);
+    for (let i = 0; i < count; i++) {
+        // Create a dual-layer sphere (core + shell)
+        const isCore = Math.random() > 0.4;
+        const radius = isCore ? Math.random() * 5 : 7 + Math.random() * 4;
+        const theta = Math.random() * Math.PI * 2;
+        const phi = Math.acos(2 * Math.random() - 1);
+        
+        pos[i * 3] = radius * Math.sin(phi) * Math.cos(theta);
+        pos[i * 3 + 1] = radius * Math.sin(phi) * Math.sin(theta);
+        pos[i * 3 + 2] = radius * Math.cos(phi);
+    }
+    return pos;
+  }, [count]);
 
   const currentPositions = useMemo(() => new Float32Array(count * 3), [count]);
 
@@ -83,39 +89,21 @@ function Particles({ temperature, rtcfActive }: ParticlesProps) {
 
     const positions = pointsRef.current.geometry.attributes.position.array as Float32Array;
     
-    // Vibration frequency based on temperature
-    const vibAmount = temperature * 0.05;
-
     for (let i = 0; i < count; i++) {
       const i3 = i * 3;
-      // Big Bang + RTCF Morph
-      let tx = targetPositions[i3];
-      let ty = targetPositions[i3 + 1];
-      let tz = targetPositions[i3 + 2];
+      const tx = (rtcfActive ? brainPositions[i3] : targetPositions[i3]) * easeProgress;
+      const ty = (rtcfActive ? brainPositions[i3 + 1] : targetPositions[i3 + 1]) * easeProgress;
+      const tz = (rtcfActive ? brainPositions[i3 + 2] : targetPositions[i3 + 2]) * easeProgress;
 
-      if (rtcfActive) {
-        const node = rtcfNodes[i % 4];
-        tx = node.x + (Math.random() - 0.5) * 8;
-        ty = node.y + (Math.random() - 0.5) * 8;
-        tz = node.z + (Math.random() - 0.5) * 8;
-      }
-
-      const vibX = (Math.random() - 0.5) * vibAmount;
-      const vibY = (Math.random() - 0.5) * vibAmount;
-      const vibZ = (Math.random() - 0.5) * vibAmount;
-
-      positions[i3] = THREE.MathUtils.lerp(positions[i3], tx * easeProgress + vibX, 0.1);
-      positions[i3 + 1] = THREE.MathUtils.lerp(positions[i3 + 1], ty * easeProgress + vibY, 0.1);
-      positions[i3 + 2] = THREE.MathUtils.lerp(positions[i3 + 2], tz * easeProgress + vibZ, 0.1);
+      positions[i3] = THREE.MathUtils.lerp(positions[i3], tx, 0.05);
+      positions[i3 + 1] = THREE.MathUtils.lerp(positions[i3 + 1], ty, 0.05);
+      positions[i3 + 2] = THREE.MathUtils.lerp(positions[i3 + 2], tz, 0.05);
     }
     pointsRef.current.geometry.attributes.position.needsUpdate = true;
 
     // Movement
     pointsRef.current.rotation.y = time * 0.015;
     pointsRef.current.rotation.x = time * 0.005;
-
-    const scrollY = window.scrollY || document.documentElement.scrollTop;
-    pointsRef.current.position.y = Math.sin(scrollY * 0.0005) * 2;
   });
 
   return (
