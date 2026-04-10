@@ -118,7 +118,7 @@ function Particles({ rtcfActive }: ParticlesProps) {
       <pointsMaterial
         size={0.15}
         map={circleTexture}
-        color="#00f3ff"
+        color="#c7ddef"
         transparent
         opacity={0.3}
         sizeAttenuation
@@ -129,18 +129,36 @@ function Particles({ rtcfActive }: ParticlesProps) {
   );
 }
 
-export default function NeuralStream({ safetyActive = false, rtcfActive = false }) {
+interface NeuralStreamProps {
+  temperature: number;
+  safetyActive?: boolean;
+  rtcfActive?: boolean;
+}
+
+export default function NeuralStream({ temperature, safetyActive = false, rtcfActive = false }: NeuralStreamProps) {
   return (
     <Canvas>
       <SheetProvider sheet={mainSheet}>
         <EditableCamera theatreKey="CinematicCamera" makeDefault position={[0, 0, 15]} fov={60} />
-        <ambientLight intensity={safetyActive ? 0.2 : 0.5} color={safetyActive ? "#ffaa00" : "#ffffff"} />
-        <pointLight position={[10, 10, 10]} intensity={safetyActive ? 2 : 1} color={safetyActive ? "#ff4400" : "#ffffff"} />
+        <ambientLight intensity={safetyActive ? 0.2 : 0.4} color={safetyActive ? "#71d8c5" : "#c7ddef"} />
+        <pointLight position={[10, 10, 10]} intensity={safetyActive ? 1.5 : 0.8} color={safetyActive ? "#71d8c5" : "#ffffff"} />
         
         <Particles rtcfActive={rtcfActive} />
 
         <EffectComposer>
-          <Bloom luminanceThreshold={1} mipmapBlur intensity={0.5} />
+          <Bloom 
+            luminanceThreshold={1} 
+            mipmapBlur 
+            intensity={0.4 + temperature * 0.4} 
+          />
+          <Glitch
+            delay={new THREE.Vector2(1.5, 3.5)}
+            duration={new THREE.Vector2(0.6, 1.0)}
+            strength={new THREE.Vector2(0.04 * temperature, 0.1 * temperature)}
+            mode={GlitchMode.SPORADIC}
+            active={temperature > 1.3}
+            ratio={0.85}
+          />
           <Vignette eskil={false} offset={0.1} darkness={1.1} />
         </EffectComposer>
       </SheetProvider>

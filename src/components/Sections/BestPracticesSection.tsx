@@ -34,7 +34,7 @@ export default function BestPracticesSection() {
         <ul style={{ listStyle: 'none' }}>
           {practices.map((practice, i) => (
             <li key={i} className="bp-item" style={{ fontSize: '1.3rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <FiCheckSquare style={{ color: 'var(--neon-blue)', fontSize: '2rem', flexShrink: 0 }} />
+              <FiCheckSquare style={{ color: 'var(--brand-mint)', fontSize: '2rem', flexShrink: 0 }} />
               <span style={{ lineHeight: 1.4 }}>{practice}</span>
             </li>
           ))}

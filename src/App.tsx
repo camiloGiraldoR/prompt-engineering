@@ -3,6 +3,7 @@ import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import NeuralStream from './components/Canvas/NeuralStream';
+import WelcomeSection from './components/Sections/WelcomeSection';
 import HeroSection from './components/Sections/HeroSection';
 import DefinitionSection from './components/Sections/DefinitionSection';
 import AnatomySection from './components/Sections/AnatomySection';
@@ -65,10 +66,14 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="canvas-container">
-        <NeuralStream temperature={temperature} safetyActive={safetyActive} rtcfActive={rtcfActive} />
+      <div className="background-layer">
+        <div className="canvas-container">
+          <NeuralStream temperature={temperature} safetyActive={safetyActive} rtcfActive={rtcfActive} />
+        </div>
       </div>
+
       <div className="content-layer">
+        <WelcomeSection />
         <HeroSection />
         <DefinitionSection />
         <AnatomySection />

@@ -35,7 +35,7 @@ export default function ConfigDashboardSection({ temperature, onTemperatureChang
           <div style={{ marginBottom: '1.5rem' }}>
             <label style={{ display: 'flex', justifyContent: 'space-between', color: 'var(--text-muted)', marginBottom: '0.5rem' }}>
               <span>Temperature (Creatividad)</span>
-              <span style={{ color: 'var(--neon-cyan)', fontWeight: 'bold' }}>{temperature}</span>
+              <span style={{ color: 'var(--brand-mint)', fontWeight: 'bold' }}>{temperature}</span>
             </label>
             <input 
               type="range" 
@@ -53,7 +53,7 @@ export default function ConfigDashboardSection({ temperature, onTemperatureChang
                    onTemperatureChange(val);
                 }
               }} 
-              style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--neon-cyan)' }} 
+              style={{ width: '100%', cursor: 'pointer', accentColor: 'var(--brand-mint)' }} 
             />
           </div>
 
@@ -64,15 +64,15 @@ export default function ConfigDashboardSection({ temperature, onTemperatureChang
           </div>
         </div>
 
-        <div style={{ flex: '1 1 300px', background: 'rgba(0, 0, 0, 0.4)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(255, 0, 234, 0.3)' }}>
-          <h3 style={{ color: 'var(--neon-magenta)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.5rem' }}>
+        <div style={{ flex: '1 1 300px', background: 'rgba(5, 59, 64, 0.4)', padding: '1.5rem', borderRadius: '12px', border: '1px solid rgba(113, 216, 197, 0.2)' }}>
+          <h3 style={{ color: 'var(--brand-mint)', marginBottom: '1rem', display: 'flex', alignItems: 'center', gap: '0.5rem', fontSize: '1.5rem' }}>
             ⚡ Latency Info
           </h3>
           <p style={{ color: 'var(--text-main)', lineHeight: 1.6 }}>
             El tiempo de respuesta (latencia) está determinado directamente por el <strong>tamaño del modelo</strong> y la cantidad de <strong>tokens generados</strong>.
           </p>
-          <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(255,0,234,0.1)', borderLeft: '4px solid var(--neon-magenta)' }}>
-            <p style={{ color: '#ffb3ff', fontSize: '0.95rem', margin: 0 }}>Nota Clave: Modificar la "Temperature" no afecta la velocidad de inferencia.</p>
+          <div style={{ marginTop: '1.5rem', padding: '1rem', background: 'rgba(113, 216, 197, 0.05)', borderLeft: '4px solid var(--brand-mint)' }}>
+            <p style={{ color: 'var(--text-muted)', fontSize: '0.95rem', margin: 0 }}>Nota Clave: Modificar la "Temperature" no afecta la velocidad de inferencia.</p>
           </div>
         </div>
       </div>
