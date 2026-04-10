@@ -8,10 +8,12 @@ export default function WelcomeSection() {
   const container = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(0.2); // Initial volume 20%
+  const [showSlider, setShowSlider] = useState(false);
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = 0.4;
+      audioRef.current.volume = volume;
     }
 
     const handleFirstInteraction = () => {
@@ -45,10 +47,20 @@ export default function WelcomeSection() {
     }
   };
 
+  const handleVolumeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newVol = parseFloat(e.target.value);
+    setVolume(newVol);
+    if (audioRef.current) {
+      audioRef.current.volume = newVol;
+      if (newVol > 0 && !isPlaying) {
+         audioRef.current.play().then(() => setIsPlaying(true));
+      }
+    }
+  };
+
   useGSAP(() => {
     const tl = gsap.timeline();
     
-    // Aligned to 0 by default to avoid stuck offsets
     tl.from('.cyber-element', {
       opacity: 0,
       duration: 1,
@@ -109,28 +121,68 @@ export default function WelcomeSection() {
     }}>
       <audio ref={audioRef} src={bgMusic} loop />
 
-      {/* Music Toggle */}
+      {/* Audio Controls Cluster */}
       <div 
-        onClick={toggleMusic}
+        onMouseEnter={() => setShowSlider(true)}
+        onMouseLeave={() => setShowSlider(false)}
         style={{
           position: 'absolute',
           top: '2rem',
           right: '2rem',
-          background: 'rgba(255, 255, 255, 0.1)',
-          backdropFilter: 'blur(10px)',
-          padding: '1rem',
-          borderRadius: '50%',
-          cursor: 'pointer',
-          color: 'var(--brand-mint)',
-          border: '1px solid rgba(113, 216, 197, 0.3)',
-          transition: 'all 0.3s ease',
           display: 'flex',
           alignItems: 'center',
-          justifyContent: 'center',
+          gap: '1rem',
           zIndex: 100
         }}
       >
-        {isPlaying ? <FiVolume2 size={24} /> : <FiVolumeX size={24} />}
+        {/* Volume Slider - Cyberpunk Styled */}
+        <div style={{
+          width: showSlider ? '120px' : '0px',
+          overflow: 'hidden',
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          display: 'flex',
+          alignItems: 'center',
+          background: 'rgba(7, 80, 86, 0.8)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '20px',
+          padding: showSlider ? '0.5rem 1rem' : '0px',
+          border: showSlider ? '1px solid var(--brand-mint)' : '1px solid transparent'
+        }}>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value={volume} 
+            onChange={handleVolumeChange}
+            style={{
+              width: '100%',
+              accentColor: 'var(--brand-mint)',
+              cursor: 'pointer'
+            }}
+          />
+        </div>
+
+        {/* Toggle Button */}
+        <div 
+          onClick={toggleMusic}
+          style={{
+            background: 'rgba(255, 255, 255, 0.1)',
+            backdropFilter: 'blur(10px)',
+            padding: '1rem',
+            borderRadius: '50%',
+            cursor: 'pointer',
+            color: 'var(--brand-mint)',
+            border: '1px solid rgba(113, 216, 197, 0.3)',
+            transition: 'all 0.3s ease',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            boxShadow: isPlaying ? '0 0 15px rgba(113, 216, 197, 0.3)' : 'none'
+          }}
+        >
+          {isPlaying && volume > 0 ? <FiVolume2 size={24} /> : <FiVolumeX size={24} />}
+        </div>
       </div>
 
       {/* Content Container */}
