@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Lenis from '@studio-freight/lenis';
 import gsap from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
@@ -11,6 +11,7 @@ import TechniquesSection from './components/Sections/TechniquesSection';
 import ConfigDashboardSection from './components/Sections/ConfigDashboardSection';
 import SafetySection from './components/Sections/SafetySection';
 import BestPracticesSection from './components/Sections/BestPracticesSection';
+import NavigationControls from './components/UI/NavigationControls';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -18,6 +19,7 @@ function App() {
   const [temperature, setTemperature] = useState(0.7);
   const [safetyActive, setSafetyActive] = useState(false);
   const [rtcfActive, setRtcfActive] = useState(false);
+  const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
     const lenis = new Lenis({
@@ -27,6 +29,8 @@ function App() {
       gestureOrientation: 'vertical',
       smoothWheel: true,
     });
+
+    lenisRef.current = lenis;
 
     lenis.on('scroll', ScrollTrigger.update);
 
@@ -73,19 +77,23 @@ function App() {
       </div>
 
       <div className="content-layer">
-        <WelcomeSection />
-        <HeroSection />
-        <DefinitionSection />
-        <AnatomySection />
+        <div id="welcome"><WelcomeSection /></div>
+        <div id="hero"><HeroSection /></div>
+        <div id="definition"><DefinitionSection /></div>
+        <div id="anatomy"><AnatomySection /></div>
         <div id="rtcf-section">
           <TechniquesSection />
         </div>
-        <ConfigDashboardSection temperature={temperature} onTemperatureChange={setTemperature} />
+        <div id="config">
+          <ConfigDashboardSection temperature={temperature} onTemperatureChange={setTemperature} />
+        </div>
         <div id="safety-section">
           <SafetySection />
         </div>
-        <BestPracticesSection />
+        <div id="best-practices"><BestPracticesSection /></div>
       </div>
+
+      <NavigationControls lenis={lenisRef} />
     </div>
   );
 }

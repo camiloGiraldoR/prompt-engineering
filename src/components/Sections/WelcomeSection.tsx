@@ -3,7 +3,6 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { FiVolumeX, FiVolume2, FiTerminal } from 'react-icons/fi';
 import bgMusic from '../../assets/LP-InTheEnd-cover.mp3';
-import presenterPhoto from '../../assets/photo-camilo.jpeg';
 
 export default function WelcomeSection() {
   const container = useRef<HTMLDivElement>(null);
@@ -74,13 +73,12 @@ export default function WelcomeSection() {
       y: 20,
       duration: 1,
       stagger: 0.15,
-      ease: 'power4.out',
-      clearProps: 'all' // Crucial: clear transforms after animation
+      ease: 'power4.out'
     });
 
     // Looping Typewriter Animation Logic
     const typingTl = gsap.timeline({ 
-      delay: 1,
+      delay: 1.5,
       repeat: -1, 
       yoyo: true, 
       repeatDelay: 3 
@@ -90,26 +88,18 @@ export default function WelcomeSection() {
     typingTl.to(typingObj, {
       charCount: fullMessage.length,
       duration: 3,
-      ease: 'power1.inOut',
+      ease: 'none', // Linear typing for realism
       onUpdate: () => {
         setStatusMessage(fullMessage.slice(0, Math.ceil(typingObj.charCount)));
       }
     });
 
-    // Blinking cursor
-    gsap.to('.cyber-cursor-line', {
+    // Blinking cursors
+    gsap.to('.cyber-cursor-line, .cyber-cursor', {
       opacity: 0,
       repeat: -1,
       duration: 0.5,
       ease: 'steps(1)'
-    });
-
-    // Portrait Scanning Animation
-    gsap.to('.scan-line', {
-      top: '100%',
-      duration: 4,
-      repeat: -1,
-      ease: 'linear'
     });
   }, { scope: container });
 
@@ -118,7 +108,6 @@ export default function WelcomeSection() {
     if (audioRef.current) {
       const audioProxy = { vol: volume };
       
-      // Separate ScrollTrigger for audio volume only
       gsap.to(audioProxy, {
         vol: 0,
         scrollTrigger: {
@@ -133,9 +122,8 @@ export default function WelcomeSection() {
             }
           },
           onLeave: () => {
-            if (audioRef.current && !audioRef.current.paused) {
+            if (audioRef.current && isPlaying) {
               audioRef.current.pause();
-              // Don't setIsPlaying(false) here to avoid re-triggering this hook infinitely
             }
           },
           onEnterBack: () => {
@@ -161,8 +149,8 @@ export default function WelcomeSection() {
       display: 'flex', 
       flexDirection: 'column', 
       justifyContent: 'center', 
-      alignItems: 'center', 
-      padding: '0 8%',
+      alignItems: 'flex-start',
+      padding: '0 10%',
       position: 'relative',
       overflow: 'hidden'
     }}>
@@ -237,82 +225,77 @@ export default function WelcomeSection() {
         </div>
       </div>
 
-      {/* Main Layout Container */}
-      <div style={{ 
-        position: 'relative', 
-        zIndex: 10, 
-        maxWidth: '1400px', 
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        gap: '4rem'
-      }}>
+      {/* Content Container */}
+      <div style={{ position: 'relative', zIndex: 10, maxWidth: '900px' }}>
         
-        {/* Left Side: Text Content */}
-        <div style={{ flex: 1, maxWidth: '850px' }}>
-          {/* Logo Podium */}
-          <div className="cyber-element" style={{ 
-            background: 'rgba(255, 255, 255, 0.95)', 
-            padding: '0.8rem 1.6rem', 
-            borderRadius: '4px',
-            marginBottom: '3rem', 
-            boxShadow: '8px 8px 0px var(--brand-mint)',
-            display: 'inline-flex',
-            alignItems: 'center',
-            border: '1px solid var(--brand-mint)'
-          }}>
-            <img src={`${import.meta.env.BASE_URL}perficient-logo.svg`} alt="Perficient" style={{ width: 160 }} />
-          </div>
+        {/* Logo Podium */}
+        <div className="cyber-element" style={{ 
+          background: 'rgba(255, 255, 255, 0.95)', 
+          padding: '0.8rem 1.6rem', 
+          borderRadius: '4px',
+          marginBottom: '3rem', 
+          boxShadow: '8px 8px 0px var(--brand-mint)',
+          display: 'inline-flex',
+          alignItems: 'center',
+          border: '1px solid var(--brand-mint)'
+        }}>
+          <img src={`${import.meta.env.BASE_URL}perficient-logo.svg`} alt="Perficient" style={{ width: 160 }} />
+        </div>
 
-          <h1 className="cyber-element text-mask" style={{ 
-            fontSize: '5rem', 
-            textAlign: 'left', 
-            marginBottom: '1rem',
-            lineHeight: 1,
-            fontWeight: 900,
-            letterSpacing: '-3px',
-            textTransform: 'uppercase'
-          }}>
-            Chill & Learn:<br />
-            <span className="text-gradient" style={{ filter: 'drop-shadow(0 0 10px rgba(113, 216, 197, 0.5))' }}>Prompt Engineering</span>
-          </h1>
+        <h1 className="cyber-element text-mask" style={{ 
+          fontSize: '5.5rem', 
+          textAlign: 'left', 
+          marginBottom: '1rem',
+          lineHeight: 1,
+          fontWeight: 900,
+          letterSpacing: '-3px',
+          textTransform: 'uppercase'
+        }}>
+          Chill & Learn:<br />
+          <span className="text-gradient" style={{ filter: 'drop-shadow(0 0 10px rgba(113, 216, 197, 0.5))' }}>Prompt Engineering</span>
+        </h1>
 
-          <div className="cyber-element" style={{ 
-            marginBottom: '3rem',
-            borderLeft: '4px solid var(--brand-mint)',
-            paddingLeft: '1.5rem',
-            marginTop: '2rem'
-          }}>
-            <p style={{ fontSize: '2rem', color: 'var(--text-main)', fontWeight: 800, marginBottom: '0.2rem', letterSpacing: '-1px' }}>
-              Camilo A. Giraldo Ramirez
-            </p>
-            <p style={{ fontSize: '1.2rem', color: 'var(--brand-sky)', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: 600 }}>
-              Senior Technical Consultant
-            </p>
-          </div>
+        <div className="cyber-element" style={{ 
+          marginBottom: '3rem',
+          borderLeft: '4px solid var(--brand-mint)',
+          paddingLeft: '1.5rem',
+          marginTop: '2rem'
+        }}>
+          <p style={{ fontSize: '2.2rem', color: 'var(--text-main)', fontWeight: 800, marginBottom: '0.2rem', letterSpacing: '-1px' }}>
+            Camilo A. Giraldo Ramirez
+          </p>
+          <p style={{ fontSize: '1.4rem', color: 'var(--brand-sky)', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: 600 }}>
+            Senior Technical Consultant
+          </p>
+        </div>
 
-          <div className="cyber-element" style={{ 
-            marginBottom: '4rem',
-            minHeight: '4.5rem' 
-          }}>
-            <p style={{ 
-              fontSize: '1.3rem', 
-              color: 'var(--brand-mint)', 
-              fontFamily: 'monospace',
-              textTransform: 'uppercase',
-              letterSpacing: '2px',
-              margin: 0
-            }}>
-              {'>'} STATUS: SYSTEM_IDLE...<br/>
-              {'>'} {statusMessage}
-              <span className="cyber-cursor-line" style={{ marginLeft: '4px', background: 'var(--brand-mint)', display: 'inline-block', width: '10px', height: '1.3rem', verticalAlign: 'middle' }}></span>
+        {/* Terminal Text Block - Refined Alignment */}
+        <div className="cyber-element" style={{ 
+          marginBottom: '4rem',
+          minHeight: '5.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '0.5rem'
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <span style={{ color: 'var(--brand-mint)', fontWeight: 900, fontSize: '1.4rem', fontFamily: 'monospace', width: '20px' }}>{'>'}</span>
+            <p style={{ fontSize: '1.4rem', color: 'var(--brand-mint)', fontFamily: 'monospace', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
+              STATUS: SYSTEM_IDLE...
             </p>
           </div>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
+            <span style={{ color: 'var(--brand-mint)', fontWeight: 900, fontSize: '1.4rem', fontFamily: 'monospace', width: '20px' }}>{'>'}</span>
+            <p style={{ fontSize: '1.4rem', color: 'var(--brand-mint)', fontFamily: 'monospace', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
+              {statusMessage}
+              <span className="cyber-cursor-line" style={{ marginLeft: '4px', background: 'var(--brand-mint)', display: 'inline-block', width: '10px', height: '1.4rem', verticalAlign: 'middle' }}></span>
+            </p>
+          </div>
+        </div>
 
+        {/* Action Button - Polished Alignment */}
+        <div className="cyber-element" style={{ display: 'flex', alignItems: 'center' }}>
           <div 
             onClick={handleStart}
-            className="cyber-element"
             onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 40px rgba(113, 216, 197, 0.6)'}
             onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 0 20px rgba(113, 216, 197, 0.2)'}
             style={{
@@ -335,93 +318,9 @@ export default function WelcomeSection() {
               position: 'relative'
             }}
           >
-            <FiTerminal />
+            <FiTerminal style={{ fontSize: '1.6rem' }} />
             <span>Comencemos</span>
             <span className="cyber-cursor">_</span>
-          </div>
-        </div>
-
-        {/* Right Side: Presenter Portrait - Scaled Down */}
-        <div className="cyber-element" style={{
-          flex: '0 0 260px',
-          height: '350px',
-          position: 'relative',
-          perspective: '1200px',
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center'
-        }}>
-          {/* Decorative Back Plate */}
-          <div style={{
-            position: 'absolute',
-            inset: '-8px',
-            border: '2px solid rgba(113, 216, 197, 0.2)',
-            borderRadius: '25px',
-            transform: 'rotateY(10deg) rotateX(5deg) translateZ(-20px)',
-            pointerEvents: 'none'
-          }} />
-
-          {/* Main Portrait Frame */}
-          <div style={{
-            width: '100%',
-            height: '100%',
-            position: 'relative',
-            background: 'rgba(7, 80, 86, 0.6)',
-            padding: '10px',
-            borderRadius: '25px',
-            border: '1px solid rgba(113, 216, 197, 0.4)',
-            boxShadow: '0 0 40px rgba(113, 216, 197, 0.1)',
-            transform: 'rotateY(-10deg) rotateX(5deg)',
-            overflow: 'hidden'
-          }}>
-            <img 
-              src={presenterPhoto} 
-              alt="Camilo Portrait" 
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                borderRadius: '15px',
-                filter: 'contrast(1.1) brightness(0.95)'
-              }} 
-            />
-            
-            {/* Cyber Scanning Line */}
-            <div className="scan-line" style={{
-              position: 'absolute',
-              top: 0,
-              left: 0,
-              width: '100%',
-              height: '4px',
-              background: 'linear-gradient(to right, transparent, var(--brand-mint), transparent)',
-              boxShadow: '0 0 15px var(--brand-mint)',
-              zIndex: 2,
-              opacity: 0.6
-            }} />
-
-            {/* Corner Accents */}
-            <div style={{ position: 'absolute', top: 15, left: 15, width: 15, height: 15, borderTop: '2px solid var(--brand-mint)', borderLeft: '2px solid var(--brand-mint)' }} />
-            <div style={{ position: 'absolute', bottom: 15, right: 15, width: 15, height: 15, borderBottom: '2px solid var(--brand-mint)', borderRight: '2px solid var(--brand-mint)' }} />
-          </div>
-
-          {/* Holographic Label */}
-          <div style={{
-            position: 'absolute',
-            bottom: '-10px',
-            left: '50%',
-            transform: 'translateX(-50%)',
-            background: 'var(--brand-mint)',
-            color: '#075056',
-            padding: '0.3rem 1.2rem',
-            fontSize: '0.85rem',
-            fontWeight: 900,
-            textTransform: 'uppercase',
-            letterSpacing: '2px',
-            borderRadius: '4px',
-            boxShadow: '0 5px 15px rgba(113, 216, 197, 0.4)',
-            zIndex: 10
-          }}>
-            PRES_ID: CG-004
           </div>
         </div>
       </div>
