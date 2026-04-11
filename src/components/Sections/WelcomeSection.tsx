@@ -16,6 +16,7 @@ export default function WelcomeSection() {
   const [statusMessage, setStatusMessage] = useState('');
   const fullMessage = 'En unos minutos daremos inicio...';
 
+  // Global Audio Initialization
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.volume = volume;
@@ -63,15 +64,18 @@ export default function WelcomeSection() {
     }
   };
 
+  // 1. Static Entry Animations (Runs ONCE)
   useGSAP(() => {
     const tl = gsap.timeline();
     
+    // Animate elements into view
     tl.from('.cyber-element', {
       opacity: 0,
       y: 20,
       duration: 1,
       stagger: 0.15,
-      ease: 'power4.out'
+      ease: 'power4.out',
+      clearProps: 'all' // Crucial: clear transforms after animation
     });
 
     // Looping Typewriter Animation Logic
@@ -107,31 +111,42 @@ export default function WelcomeSection() {
       repeat: -1,
       ease: 'linear'
     });
+  }, { scope: container });
 
-    // ScrollTrigger to pause/play music
+  // 2. Reactive Audio Crossfade (Depends on volume/state)
+  useGSAP(() => {
     if (audioRef.current) {
-      gsap.to({}, {
+      const audioProxy = { vol: volume };
+      
+      // Separate ScrollTrigger for audio volume only
+      gsap.to(audioProxy, {
+        vol: 0,
         scrollTrigger: {
           trigger: container.current,
           start: 'top top',
           end: 'bottom top',
+          scrub: true,
+          id: 'audio-fade',
+          onUpdate: () => {
+            if (audioRef.current && isPlaying) {
+              audioRef.current.volume = audioProxy.vol;
+            }
+          },
           onLeave: () => {
             if (audioRef.current && !audioRef.current.paused) {
               audioRef.current.pause();
-              setIsPlaying(false);
+              // Don't setIsPlaying(false) here to avoid re-triggering this hook infinitely
             }
           },
           onEnterBack: () => {
-            if (audioRef.current && audioRef.current.paused) {
-              audioRef.current.play()
-                .then(() => setIsPlaying(true))
-                .catch(e => console.log('Scroll resume blocked:', e));
+            if (audioRef.current && audioRef.current.paused && isPlaying) {
+              audioRef.current.play().catch(e => console.log('Resume blocked:', e));
             }
           }
         }
       });
     }
-  }, { scope: container });
+  }, { scope: container, dependencies: [volume, isPlaying] });
 
   const handleStart = () => {
     const target = document.querySelector('#hero-section');
