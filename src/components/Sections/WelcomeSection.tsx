@@ -10,6 +10,10 @@ export default function WelcomeSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.2); // Initial volume 20%
   const [showSlider, setShowSlider] = useState(false);
+  
+  // Typewriter state
+  const [statusMessage, setStatusMessage] = useState('');
+  const fullMessage = 'En unos minutos daremos inicio...';
 
   useEffect(() => {
     if (audioRef.current) {
@@ -68,6 +72,24 @@ export default function WelcomeSection() {
       ease: 'power4.out'
     });
 
+    // Looping Typewriter Animation Logic
+    const typingTl = gsap.timeline({ 
+      delay: 1,
+      repeat: -1, // Infinite loop
+      yoyo: true, // Backspace effect
+      repeatDelay: 3 // Wait while fully typed
+    });
+    
+    const typingObj = { charCount: 0 };
+    typingTl.to(typingObj, {
+      charCount: fullMessage.length,
+      duration: 3,
+      ease: 'power1.inOut',
+      onUpdate: () => {
+        setStatusMessage(fullMessage.slice(0, Math.ceil(typingObj.charCount)));
+      }
+    });
+
     // Blinking cursor
     gsap.to('.cyber-cursor', {
       opacity: 0,
@@ -121,7 +143,7 @@ export default function WelcomeSection() {
     }}>
       <audio ref={audioRef} src={bgMusic} loop />
 
-      {/* Audio Controls Cluster */}
+      {/* Audio Controls Cluster - Vertical Stack */}
       <div 
         onMouseEnter={() => setShowSlider(true)}
         onMouseLeave={() => setShowSlider(false)}
@@ -130,40 +152,13 @@ export default function WelcomeSection() {
           top: '2rem',
           right: '2rem',
           display: 'flex',
+          flexDirection: 'column',
           alignItems: 'center',
-          gap: '1rem',
+          gap: '0.8rem',
           zIndex: 100
         }}
       >
-        {/* Volume Slider - Cyberpunk Styled */}
-        <div style={{
-          width: showSlider ? '120px' : '0px',
-          overflow: 'hidden',
-          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-          display: 'flex',
-          alignItems: 'center',
-          background: 'rgba(7, 80, 86, 0.8)',
-          backdropFilter: 'blur(10px)',
-          borderRadius: '20px',
-          padding: showSlider ? '0.5rem 1rem' : '0px',
-          border: showSlider ? '1px solid var(--brand-mint)' : '1px solid transparent'
-        }}>
-          <input 
-            type="range" 
-            min="0" 
-            max="1" 
-            step="0.01" 
-            value={volume} 
-            onChange={handleVolumeChange}
-            style={{
-              width: '100%',
-              accentColor: 'var(--brand-mint)',
-              cursor: 'pointer'
-            }}
-          />
-        </div>
-
-        {/* Toggle Button */}
+        {/* Toggle Button Top */}
         <div 
           onClick={toggleMusic}
           style={{
@@ -182,6 +177,40 @@ export default function WelcomeSection() {
           }}
         >
           {isPlaying && volume > 0 ? <FiVolume2 size={24} /> : <FiVolumeX size={24} />}
+        </div>
+
+        {/* Volume Slider - Below Button */}
+        <div style={{
+          height: showSlider ? '120px' : '0px',
+          opacity: showSlider ? 1 : 0,
+          overflow: 'hidden',
+          transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          background: 'rgba(7, 80, 86, 0.8)',
+          backdropFilter: 'blur(10px)',
+          borderRadius: '20px',
+          padding: showSlider ? '1rem 0.5rem' : '0px',
+          border: showSlider ? '1px solid var(--brand-mint)' : '1px solid transparent'
+        }}>
+          <input 
+            type="range" 
+            min="0" 
+            max="1" 
+            step="0.01" 
+            value={volume} 
+            onChange={handleVolumeChange}
+            style={{
+              writingMode: 'vertical-lr', // Standard for vertical sliders
+              WebkitAppearance: 'slider-vertical', // For Chrome/Safari
+              width: '8px',
+              height: '100px',
+              accentColor: 'var(--brand-mint)',
+              cursor: 'pointer',
+              margin: '0 auto'
+            } as any}
+          />
         </div>
       </div>
 
@@ -229,17 +258,23 @@ export default function WelcomeSection() {
           </p>
         </div>
 
-        <p className="cyber-element" style={{ 
-          fontSize: '1.4rem', 
-          color: 'var(--brand-mint)', 
+        <div className="cyber-element" style={{ 
           marginBottom: '4rem',
-          fontFamily: 'monospace',
-          textTransform: 'uppercase',
-          letterSpacing: '2px'
+          minHeight: '4.5rem' // Prevent layout shift during typing
         }}>
-          {'>'} STATUS: SYSTEM_IDLE...<br/>
-          {'>'} INITIALIZING_INTERACTION_SEQUENCE...
-        </p>
+          <p style={{ 
+            fontSize: '1.4rem', 
+            color: 'var(--brand-mint)', 
+            fontFamily: 'monospace',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            margin: 0
+          }}>
+            {'>'} STATUS: SYSTEM_IDLE...<br/>
+            {'>'} {statusMessage}
+            <span className="cyber-cursor" style={{ marginLeft: '4px', background: 'var(--brand-mint)', display: 'inline-block', width: '10px', height: '1.4rem', verticalAlign: 'middle' }}></span>
+          </p>
+        </div>
 
         {/* Cyber Interactive Trigger - Polished Size & Alignment */}
         <div 
