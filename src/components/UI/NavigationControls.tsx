@@ -15,7 +15,8 @@ const sections = [
   'rtcf-section',
   'config',
   'safety-section',
-  'best-practices'
+  'best-practices',
+  'thanks'
 ];
 
 export default function NavigationControls({ lenis }: NavigationControlsProps) {

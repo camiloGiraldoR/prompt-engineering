@@ -12,6 +12,7 @@ import ConfigDashboardSection from './components/Sections/ConfigDashboardSection
 import SafetySection from './components/Sections/SafetySection';
 import BestPracticesSection from './components/Sections/BestPracticesSection';
 import AudienceSection from './components/Sections/AudienceSection';
+import ThankYouSection from './components/Sections/ThankYouSection';
 import NavigationControls from './components/UI/NavigationControls';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -93,6 +94,7 @@ function App() {
           <SafetySection />
         </div>
         <div id="best-practices"><BestPracticesSection /></div>
+        <div id="thanks"><ThankYouSection /></div>
       </div>
 
       <NavigationControls lenis={lenisRef} />
