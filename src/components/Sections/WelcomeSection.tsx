@@ -2,7 +2,7 @@ import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { FiVolumeX, FiVolume2, FiTerminal } from 'react-icons/fi';
-import bgMusic from '../../assets/LP-InTheEnd-cover.mp3';
+import bgMusic from '../../assets/cover.mp3';
 
 export default function WelcomeSection() {
   const container = useRef<HTMLDivElement>(null);
@@ -10,7 +10,7 @@ export default function WelcomeSection() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(0.2); // Initial volume 20%
   const [showSlider, setShowSlider] = useState(false);
-  
+
   // Typewriter state
   const [statusMessage, setStatusMessage] = useState('');
   const fullMessage = 'En unos minutos daremos inicio...';
@@ -58,7 +58,7 @@ export default function WelcomeSection() {
     if (audioRef.current) {
       audioRef.current.volume = newVol;
       if (newVol > 0 && !isPlaying) {
-         audioRef.current.play().then(() => setIsPlaying(true));
+        audioRef.current.play().then(() => setIsPlaying(true));
       }
     }
   };
@@ -66,7 +66,7 @@ export default function WelcomeSection() {
   // 1. Static Entry Animations (Runs ONCE)
   useGSAP(() => {
     const tl = gsap.timeline();
-    
+
     // Animate elements into view
     tl.from('.cyber-element', {
       opacity: 0,
@@ -77,13 +77,13 @@ export default function WelcomeSection() {
     });
 
     // Looping Typewriter Animation Logic
-    const typingTl = gsap.timeline({ 
+    const typingTl = gsap.timeline({
       delay: 1.5,
-      repeat: -1, 
-      yoyo: true, 
-      repeatDelay: 3 
+      repeat: -1,
+      yoyo: true,
+      repeatDelay: 3
     });
-    
+
     const typingObj = { charCount: 0 };
     typingTl.to(typingObj, {
       charCount: fullMessage.length,
@@ -107,7 +107,7 @@ export default function WelcomeSection() {
   useGSAP(() => {
     if (audioRef.current) {
       const audioProxy = { vol: volume };
-      
+
       gsap.to(audioProxy, {
         vol: 0,
         scrollTrigger: {
@@ -137,27 +137,18 @@ export default function WelcomeSection() {
   }, { scope: container, dependencies: [volume, isPlaying] });
 
   const handleStart = () => {
-    const target = document.querySelector('#hero-section');
+    const target = document.querySelector('#audience');
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
   };
 
   return (
-    <section ref={container} className="section-container" style={{ 
-      minHeight: '100vh', 
-      display: 'flex', 
-      flexDirection: 'column', 
-      justifyContent: 'center', 
-      alignItems: 'flex-start',
-      padding: '0 10%',
-      position: 'relative',
-      overflow: 'hidden'
-    }}>
+    <section ref={container} className="section-container">
       <audio ref={audioRef} src={bgMusic} loop />
 
       {/* Audio Controls Cluster - Vertical Stack */}
-      <div 
+      <div
         onMouseEnter={() => setShowSlider(true)}
         onMouseLeave={() => setShowSlider(false)}
         style={{
@@ -171,7 +162,7 @@ export default function WelcomeSection() {
           zIndex: 100
         }}
       >
-        <div 
+        <div
           onClick={toggleMusic}
           style={{
             background: 'rgba(255, 255, 255, 0.1)',
@@ -205,16 +196,16 @@ export default function WelcomeSection() {
           padding: showSlider ? '1rem 0.5rem' : '0px',
           border: showSlider ? '1px solid var(--brand-mint)' : '1px solid transparent'
         }}>
-          <input 
-            type="range" 
-            min="0" 
-            max="1" 
-            step="0.01" 
-            value={volume} 
+          <input
+            type="range"
+            min="0"
+            max="1"
+            step="0.01"
+            value={volume}
             onChange={handleVolumeChange}
             style={{
-              writingMode: 'vertical-lr', 
-              WebkitAppearance: 'slider-vertical', 
+              writingMode: 'vertical-lr',
+              WebkitAppearance: 'slider-vertical',
               width: '8px',
               height: '100px',
               accentColor: 'var(--brand-mint)',
@@ -226,14 +217,14 @@ export default function WelcomeSection() {
       </div>
 
       {/* Content Container */}
-      <div style={{ position: 'relative', zIndex: 10, maxWidth: '900px' }}>
-        
+      <div className="section-content">
+
         {/* Logo Podium */}
-        <div className="cyber-element" style={{ 
-          background: 'rgba(255, 255, 255, 0.95)', 
-          padding: '0.8rem 1.6rem', 
+        <div className="cyber-element" style={{
+          background: 'rgba(255, 255, 255, 0.95)',
+          padding: '0.8rem 1.6rem',
           borderRadius: '4px',
-          marginBottom: '3rem', 
+          marginBottom: '3rem',
           boxShadow: '8px 8px 0px var(--brand-mint)',
           display: 'inline-flex',
           alignItems: 'center',
@@ -242,9 +233,9 @@ export default function WelcomeSection() {
           <img src={`${import.meta.env.BASE_URL}perficient-logo.svg`} alt="Perficient" style={{ width: 160 }} />
         </div>
 
-        <h1 className="cyber-element text-mask" style={{ 
-          fontSize: '5.5rem', 
-          textAlign: 'left', 
+        <h1 className="cyber-element text-mask" style={{
+          fontSize: '5.5rem',
+          textAlign: 'left',
           marginBottom: '1rem',
           lineHeight: 1,
           fontWeight: 900,
@@ -255,7 +246,7 @@ export default function WelcomeSection() {
           <span className="text-gradient" style={{ filter: 'drop-shadow(0 0 10px rgba(113, 216, 197, 0.5))' }}>Prompt Engineering</span>
         </h1>
 
-        <div className="cyber-element" style={{ 
+        <div className="cyber-element" style={{
           marginBottom: '3rem',
           borderLeft: '4px solid var(--brand-mint)',
           paddingLeft: '1.5rem',
@@ -270,7 +261,7 @@ export default function WelcomeSection() {
         </div>
 
         {/* Terminal Text Block - Refined Alignment */}
-        <div className="cyber-element" style={{ 
+        <div className="cyber-element" style={{
           marginBottom: '4rem',
           minHeight: '5.5rem',
           display: 'flex',
@@ -280,7 +271,7 @@ export default function WelcomeSection() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <span style={{ color: 'var(--brand-mint)', fontWeight: 900, fontSize: '1.4rem', fontFamily: 'monospace', width: '20px' }}>{'>'}</span>
             <p style={{ fontSize: '1.4rem', color: 'var(--brand-mint)', fontFamily: 'monospace', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
-              STATUS: SYSTEM_IDLE...
+              STATUS: SKYNET_SYSTEM_IDLE...
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -294,7 +285,7 @@ export default function WelcomeSection() {
 
         {/* Action Button - Polished Alignment */}
         <div className="cyber-element" style={{ display: 'flex', alignItems: 'center' }}>
-          <div 
+          <div
             onClick={handleStart}
             onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 0 40px rgba(113, 216, 197, 0.6)'}
             onMouseLeave={(e) => e.currentTarget.style.boxShadow = '0 0 20px rgba(113, 216, 197, 0.2)'}
@@ -311,7 +302,7 @@ export default function WelcomeSection() {
               border: 'none',
               textTransform: 'uppercase',
               letterSpacing: '3px',
-              clipPath: 'polygon(0% 0%, 100% 0%, 92% 100%, 0% 100%)', 
+              clipPath: 'polygon(0% 0%, 100% 0%, 92% 100%, 0% 100%)',
               transition: 'all 0.3s ease',
               boxShadow: '0 0 20px rgba(113, 216, 197, 0.2)',
               zIndex: 100,

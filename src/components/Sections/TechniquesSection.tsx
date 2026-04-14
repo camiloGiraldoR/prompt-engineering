@@ -1,28 +1,24 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function TechniquesSection() {
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
-    // Dynamic scrub timeline during pin
-    const tl = gsap.timeline({
+    // Simplified entry stagger instead of pinning/scrubbing
+    gsap.from('.tech-item', {
       scrollTrigger: {
         trigger: container.current,
-        start: 'center center',
-        end: '+=1500', // Pin duration
-        pin: true,
-        scrub: 1.5,
+        start: 'top 75%',
       },
-    });
-
-    // Make the cards slide in from the right progressively while pinned
-    tl.from('.tech-item', {
-      x: 600,
+      y: 40,
       opacity: 0,
-      scale: 0.8,
-      stagger: 0.5,
+      scale: 0.95,
+      stagger: 0.2,
       duration: 1,
       ease: 'power3.out',
     });
@@ -35,19 +31,21 @@ export default function TechniquesSection() {
   ];
 
   return (
-    <section ref={container} className="section-container tech-panel" style={{ background: 'transparent', borderTop: '1px solid rgba(0,243,255,0.1)', borderBottom: '1px solid rgba(0,243,255,0.1)' }}>
-      <h2 className="text-mask" style={{ fontSize: '5rem', marginBottom: '3rem', lineHeight: 1 }}>Metodologías y Técnicas</h2>
-      
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%', maxWidth: '800px' }}>
-        {tech.map((t, i) => (
-          <div key={i} className="tech-item glass-panel" style={{ padding: '2rem', borderLeft: '4px solid var(--neon-magenta)' }}>
-            <h3 style={{ fontSize: '1.6rem', marginBottom: '0.5rem' }}>{t.name}</h3>
-            <p style={{ fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-main)' }}>{t.desc}</p>
-            <div style={{ background: 'rgba(0,0,0,0.6)', padding: '1.2rem', borderRadius: '8px', fontFamily: 'monospace', color: '#00f3ff' }}>
-              {t.example}
+    <section ref={container} className="section-container tech-panel">
+      <div className="section-content">
+        <h2 className="text-mask" style={{ fontSize: '5rem', marginBottom: '3rem', lineHeight: 1 }}>Metodologías y Técnicas</h2>
+        
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', width: '100%' }}>
+          {tech.map((t, i) => (
+            <div key={i} className="tech-item glass-panel" style={{ padding: '2rem', borderLeft: '4px solid var(--brand-mint)' }}>
+              <h3 style={{ fontSize: '1.6rem', marginBottom: '0.5rem' }}>{t.name}</h3>
+              <p style={{ fontSize: '1.1rem', marginBottom: '1rem', color: 'var(--text-main)' }}>{t.desc}</p>
+              <div style={{ background: 'rgba(0,0,0,0.6)', padding: '1.2rem', borderRadius: '8px', fontFamily: 'monospace', color: 'var(--brand-mint)' }}>
+                {t.example}
+              </div>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     </section>
   );

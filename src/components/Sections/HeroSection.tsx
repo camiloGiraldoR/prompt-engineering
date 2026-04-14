@@ -16,8 +16,8 @@ export default function HeroSection() {
   }, { scope: container });
 
   return (
-    <section id="hero-section" ref={container} className="section-container" style={{ minHeight: '100vh', position: 'relative' }}>
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+    <section id="hero-section" ref={container} className="section-container">
+      <div className="section-content" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
         <div className="hero-element" style={{ 
           background: 'rgba(255, 255, 255, 0.95)', 
           padding: '1.2rem 2.5rem', 

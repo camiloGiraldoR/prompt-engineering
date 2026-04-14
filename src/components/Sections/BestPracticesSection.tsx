@@ -1,7 +1,6 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
-import { FiCheckSquare } from 'react-icons/fi';
 
 export default function BestPracticesSection() {
   const container = useRef<HTMLDivElement>(null);
@@ -14,31 +13,40 @@ export default function BestPracticesSection() {
       },
       x: -50,
       opacity: 0,
-      stagger: 0.2,
       duration: 0.8,
-      ease: 'power3.out',
+      stagger: 0.1,
+      ease: 'power2.out',
     });
   }, { scope: container });
 
   const practices = [
-    'Sé claro y sumamente específico.',
-    'Provee el contexto necesario siempre.',
-    'Evita las preguntas demasiado abiertas.',
-    'Especifica el formato y longitud esperados de la respuesta.'
+    'Sé claro y directo con las instrucciones.',
+    'Proporciona contexto relevante y suficiente.',
+    'Utiliza delimitadores para separar secciones.',
+    'Especifica el formato de salida deseado.',
+    'Itera y refina tus prompts constantemente.'
   ];
 
   return (
-    <section ref={container} className="section-container" style={{ minHeight: '80vh', maxWidth: '800px', display: 'flex', alignItems: 'center' }}>
-      <div className="glass-panel" style={{ padding: '3rem', width: '100%' }}>
-        <h2 className="text-mask" style={{ fontSize: '4rem', marginBottom: '2rem', lineHeight: 1 }}>Mejores Prácticas</h2>
-        <ul style={{ listStyle: 'none' }}>
-          {practices.map((practice, i) => (
-            <li key={i} className="bp-item" style={{ fontSize: '1.3rem', marginBottom: '1.5rem', display: 'flex', alignItems: 'center', gap: '1rem' }}>
-              <FiCheckSquare style={{ color: 'var(--brand-mint)', fontSize: '2rem', flexShrink: 0 }} />
-              <span style={{ lineHeight: 1.4 }}>{practice}</span>
-            </li>
+    <section ref={container} className="section-container" style={{ background: 'rgba(5, 59, 64, 0.7)' }}>
+      <div className="section-content">
+        <h2 className="text-mask" style={{ fontSize: '5.5rem', marginBottom: '3rem', lineHeight: 1 }}>Best Practices</h2>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+          {practices.map((p, i) => (
+            <div key={i} className="bp-item" style={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: '1.5rem',
+              padding: '1.5rem',
+              background: 'rgba(255,255,255,0.03)',
+              borderLeft: '4px solid var(--brand-mint)',
+              fontSize: '1.4rem'
+            }}>
+              <span style={{ color: 'var(--brand-mint)', fontWeight: 900, fontSize: '1.8rem' }}>0{i + 1}</span>
+              <span>{p}</span>
+            </div>
           ))}
-        </ul>
+        </div>
       </div>
     </section>
   );

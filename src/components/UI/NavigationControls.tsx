@@ -8,6 +8,7 @@ interface NavigationControlsProps {
 
 const sections = [
   'welcome',
+  'audience',
   'hero',
   'definition',
   'anatomy',
