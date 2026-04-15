@@ -24,8 +24,8 @@ export default function AudienceSection() {
 
   return (
     <section ref={container} className="section-container">
-      <div className="section-content" style={{ borderLeft: '4px solid var(--brand-mint)', paddingLeft: '2rem' }}>
-        <h2 className="aud-element text-mask" style={{ fontSize: '4.5rem', marginBottom: '1.5rem', lineHeight: 1.1 }}>
+      <div className="section-content">
+        <h2 className="aud-element text-mask" style={{ fontSize: '4.5rem', marginBottom: '1.5rem', lineHeight: 1.1, textAlign: 'center' }}>
           ¿A quién va dirigida esta charla?
         </h2>
         <div className="aud-element" style={{ 

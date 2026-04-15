@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
-import { FiMessageSquare, FiTarget, FiTool, FiShield } from 'react-icons/fi';
+import { FiMessageSquare, FiTarget, FiTool, FiShield, FiXCircle } from 'react-icons/fi';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -28,12 +28,13 @@ export default function AnatomySection() {
     { icon: <FiMessageSquare />, title: 'Contexto', desc: 'Información externa o guías para orientar la respuesta.' },
     { icon: <FiTool />, title: 'Datos de Entrada', desc: 'El contenido que el modelo debe procesar o transformar.' },
     { icon: <FiShield />, title: 'Indicadores de Salida', desc: 'El formato, tono o restricciones del resultado final.' },
+    { icon: <FiXCircle />, title: 'Prompting Negativo', desc: 'Lo que se debe evitar para prevenir sesgos, respuestas vagas o alucinaciones.' },
   ];
 
   return (
     <section ref={container} className="section-container">
       <div className="section-content">
-        <h2 className="ana-element text-mask" style={{ fontSize: '4.5rem', marginBottom: '3rem', lineHeight: 1 }}>Anatomía de un Prompt Perfecto</h2>
+        <h2 className="ana-element text-mask" style={{ fontSize: '4.5rem', marginBottom: '3rem', lineHeight: 1, textAlign: 'center' }}>Anatomía de un Prompt Perfecto</h2>
         
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '1.5rem', width: '100%' }}>
           {cards.map((card, i) => (

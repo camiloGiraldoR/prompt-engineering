@@ -14,6 +14,7 @@ import BestPracticesSection from './components/Sections/BestPracticesSection';
 import AudienceSection from './components/Sections/AudienceSection';
 import ThankYouSection from './components/Sections/ThankYouSection';
 import NavigationControls from './components/UI/NavigationControls';
+import RTCFSection from './components/Sections/RTCFSection';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -56,8 +57,8 @@ function App() {
     // Safety State trigger
     ScrollTrigger.create({
       trigger: '#safety-section',
-      start: 'top 60%',
-      end: 'bottom 40%',
+      start: 'top 70%',
+      end: 'bottom 30%',
       onEnter: () => setSafetyActive(true),
       onLeave: () => setSafetyActive(false),
       onEnterBack: () => setSafetyActive(true),
@@ -71,7 +72,7 @@ function App() {
   }, []);
 
   return (
-    <div className="app-container">
+    <div className={`app-container ${safetyActive ? 'safety-highlight' : ''}`}>
       <div className="background-layer">
         <div className="canvas-container">
           <NeuralStream temperature={temperature} safetyActive={safetyActive} rtcfActive={rtcfActive} />
@@ -85,6 +86,9 @@ function App() {
         <div id="definition"><DefinitionSection /></div>
         <div id="anatomy"><AnatomySection /></div>
         <div id="rtcf-section">
+          <RTCFSection />
+        </div>
+        <div id="techniques">
           <TechniquesSection />
         </div>
         <div id="config">

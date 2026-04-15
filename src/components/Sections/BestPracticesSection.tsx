@@ -30,7 +30,7 @@ export default function BestPracticesSection() {
   return (
     <section ref={container} className="section-container" style={{ background: 'rgba(5, 59, 64, 0.7)' }}>
       <div className="section-content">
-        <h2 className="text-mask" style={{ fontSize: '5.5rem', marginBottom: '3rem', lineHeight: 1 }}>Best Practices</h2>
+        <h2 className="text-mask" style={{ fontSize: '5.5rem', marginBottom: '3rem', lineHeight: 1, textAlign: 'center' }}>Best Practices</h2>
         <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
           {practices.map((p, i) => (
             <div key={i} className="bp-item" style={{ 

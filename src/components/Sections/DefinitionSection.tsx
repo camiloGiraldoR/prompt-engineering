@@ -25,7 +25,7 @@ export default function DefinitionSection() {
   return (
     <section ref={container} className="section-container">
       <div className="section-content">
-        <h2 className="def-element text-mask" style={{ fontSize: '4.5rem', marginBottom: '1.5rem', lineHeight: 1 }}>¿Qué es Prompt Engineering?</h2>
+        <h2 className="def-element text-mask" style={{ fontSize: '4.5rem', marginBottom: '1.5rem', lineHeight: 1, textAlign: 'center' }}>¿Qué es Prompt Engineering?</h2>
         <p className="def-element" style={{ fontSize: '1.2rem', lineHeight: 1.8, marginBottom: '1.5rem' }}>
           No es solo "escribir texto". Es la disciplina de comprender y optimizar los límites y capacidades de los Modelos de Lenguaje Grande (LLMs).
         </p>
