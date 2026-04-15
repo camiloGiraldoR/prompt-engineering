@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SectionLogo from '../UI/SectionLogo';
 
 interface ConfigDashboardSectionProps {
   temperature: number;
@@ -61,6 +62,7 @@ export default function ConfigDashboardSection({ temperature, onTemperatureChang
           </div>
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }

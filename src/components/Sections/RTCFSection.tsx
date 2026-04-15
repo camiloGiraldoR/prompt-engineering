@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { FiUser, FiCheckSquare, FiInfo, FiLayout, FiArrowRight } from 'react-icons/fi';
+import SectionLogo from '../UI/SectionLogo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -42,7 +43,7 @@ export default function RTCFSection() {
   ];
 
   return (
-    <section ref={container} className="section-container" style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
+    <section ref={container} className="section-container">
       <div className="section-content" style={{ maxWidth: '1100px' }}>
         <h2 className="rtcf-left-item text-mask" style={{ fontSize: '3.5rem', marginBottom: '2.5rem', textAlign: 'center', lineHeight: 1 }}>Marco RTCF</h2>
         
@@ -119,6 +120,7 @@ export default function RTCFSection() {
           </div>
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }

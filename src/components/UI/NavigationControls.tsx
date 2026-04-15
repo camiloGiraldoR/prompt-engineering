@@ -13,6 +13,7 @@ const sections = [
   'definition',
   'anatomy',
   'rtcf-section',
+  'techniques',
   'config',
   'safety-section',
   'best-practices',

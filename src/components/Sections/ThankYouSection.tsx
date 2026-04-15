@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { FiMessageCircle } from 'react-icons/fi';
+import SectionLogo from '../UI/SectionLogo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,6 +121,7 @@ export default function ThankYouSection() {
         </div>
 
       </div>
+      <SectionLogo />
     </section>
   );
 }

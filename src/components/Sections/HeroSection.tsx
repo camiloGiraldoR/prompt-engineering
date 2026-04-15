@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SectionLogo from '../UI/SectionLogo';
 
 export default function HeroSection() {
   const container = useRef<HTMLDivElement>(null);
@@ -60,6 +61,7 @@ export default function HeroSection() {
           Maximizando la productividad profesional mediante la interacción estructurada y estratégica con Modelos de Lenguaje Grande.
         </p>
       </div>
+      <SectionLogo />
     </section>
   );
 }

@@ -1,10 +1,12 @@
 import { useRef } from 'react';
+import React from 'react';
 import { FiZap, FiEdit3, FiActivity } from 'react-icons/fi';
+import SectionLogo from '../UI/SectionLogo';
 
 interface TechItem {
   name: string;
   shortDesc: string;
-  icon: JSX.Element;
+  icon: React.ReactElement;
   color: string;
 }
 
@@ -72,6 +74,7 @@ export default function TechniquesSection() {
           ))}
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }

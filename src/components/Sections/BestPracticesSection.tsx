@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import SectionLogo from '../UI/SectionLogo';
 
 export default function BestPracticesSection() {
   const container = useRef<HTMLDivElement>(null);
@@ -48,6 +49,7 @@ export default function BestPracticesSection() {
           ))}
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }

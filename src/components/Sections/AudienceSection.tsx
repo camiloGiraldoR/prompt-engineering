@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import SectionLogo from '../UI/SectionLogo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -55,6 +56,7 @@ export default function AudienceSection() {
           </div>
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }

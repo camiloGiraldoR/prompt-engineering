@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import SectionLogo from '../UI/SectionLogo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,6 +34,7 @@ export default function DefinitionSection() {
           Al dominar esta técnica, transformamos resultados genéricos y superficiales en respuestas precisas, profundas y perfectamente alineadas con los objetivos empresariales.
         </p>
       </div>
+      <SectionLogo />
     </section>
   );
 }

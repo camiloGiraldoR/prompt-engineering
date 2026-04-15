@@ -2,6 +2,7 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import { FiAlertTriangle } from 'react-icons/fi';
+import SectionLogo from '../UI/SectionLogo';
 
 export default function SafetySection() {
   const container = useRef<HTMLDivElement>(null);
@@ -45,6 +46,7 @@ export default function SafetySection() {
           ))}
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }

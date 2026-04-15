@@ -3,6 +3,7 @@ import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 import { FiMessageSquare, FiTarget, FiTool, FiShield, FiXCircle } from 'react-icons/fi';
+import SectionLogo from '../UI/SectionLogo';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -46,6 +47,7 @@ export default function AnatomySection() {
           ))}
         </div>
       </div>
+      <SectionLogo />
     </section>
   );
 }
