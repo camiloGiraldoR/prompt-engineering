@@ -22,6 +22,8 @@ function App() {
   const [temperature, setTemperature] = useState(0.7);
   const [safetyActive, setSafetyActive] = useState(false);
   const [rtcfActive, setRtcfActive] = useState(false);
+  const [audienceActive, setAudienceActive] = useState(false);
+  const [definitionActive, setDefinitionActive] = useState(false);
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
@@ -42,6 +44,28 @@ function App() {
     });
 
     gsap.ticker.lagSmoothing(0);
+
+    // Audience (Earth) State trigger
+    ScrollTrigger.create({
+      trigger: '#audience',
+      start: 'top 60%',
+      end: 'bottom 40%',
+      onEnter: () => setAudienceActive(true),
+      onLeave: () => setAudienceActive(false),
+      onEnterBack: () => setAudienceActive(true),
+      onLeaveBack: () => setAudienceActive(false),
+    });
+
+    // Definition (Human) State trigger
+    ScrollTrigger.create({
+      trigger: '#definition',
+      start: 'top 60%',
+      end: 'bottom 40%',
+      onEnter: () => setDefinitionActive(true),
+      onLeave: () => setDefinitionActive(false),
+      onEnterBack: () => setDefinitionActive(true),
+      onLeaveBack: () => setDefinitionActive(false),
+    });
 
     // RTCF State trigger
     ScrollTrigger.create({
@@ -75,7 +99,7 @@ function App() {
     <div className={`app-container ${safetyActive ? 'safety-highlight' : ''}`}>
       <div className="background-layer">
         <div className="canvas-container">
-          <NeuralStream temperature={temperature} safetyActive={safetyActive} rtcfActive={rtcfActive} />
+          <NeuralStream temperature={temperature} safetyActive={safetyActive} rtcfActive={rtcfActive} audienceActive={audienceActive} definitionActive={definitionActive} />
         </div>
       </div>
 

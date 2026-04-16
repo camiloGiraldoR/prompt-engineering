@@ -1,10 +1,12 @@
 import { useRef, useEffect, useState } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useTranslation } from 'react-i18next';
 import { FiVolumeX, FiVolume2, FiTerminal } from 'react-icons/fi';
 import bgMusic from '../../assets/cover.mp3';
 
 export default function WelcomeSection() {
+  const { t } = useTranslation();
   const container = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isPlaying, setIsPlaying] = useState(false);
@@ -13,7 +15,7 @@ export default function WelcomeSection() {
   
   // Typewriter state
   const [statusMessage, setStatusMessage] = useState('');
-  const fullMessage = 'En unos minutos daremos inicio...';
+  const fullMessage = t('welcome.status_msg');
 
   // Transparent audio unlocker on first click
   useEffect(() => {
@@ -235,8 +237,8 @@ export default function WelcomeSection() {
           letterSpacing: '-3px',
           textTransform: 'uppercase'
         }}>
-          Chill & Learn:<br />
-          <span className="text-gradient" style={{ filter: 'drop-shadow(0 0 10px rgba(113, 216, 197, 0.5))' }}>Prompt Engineering</span>
+          {t('welcome.title_chill')}<br />
+          <span className="text-gradient" style={{ filter: 'drop-shadow(0 0 10px rgba(113, 216, 197, 0.5))' }}>{t('welcome.title_pe')}</span>
         </h1>
 
         <div className="cyber-element" style={{ 
@@ -249,7 +251,7 @@ export default function WelcomeSection() {
             Camilo A. Giraldo Ramirez
           </p>
           <p style={{ fontSize: '1.4rem', color: 'var(--brand-sky)', textTransform: 'uppercase', letterSpacing: '4px', fontWeight: 600 }}>
-            Senior Technical Consultant
+            {t('welcome.role')}
           </p>
         </div>
 
@@ -264,7 +266,7 @@ export default function WelcomeSection() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
             <span style={{ color: 'var(--brand-mint)', fontWeight: 900, fontSize: '1.4rem', fontFamily: 'monospace', width: '20px' }}>{'>'}</span>
             <p style={{ fontSize: '1.4rem', color: 'var(--brand-mint)', fontFamily: 'monospace', textTransform: 'uppercase', letterSpacing: '2px', margin: 0 }}>
-              STATUS: SYSTEM_READY
+              {t('welcome.status_ready')}
             </p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center', gap: '0.8rem' }}>
@@ -303,7 +305,7 @@ export default function WelcomeSection() {
             }}
           >
             <FiTerminal style={{ fontSize: '1.6rem' }} />
-            <span>Comencemos</span>
+            <span>{t('welcome.btn_start')}</span>
             <span className="cyber-cursor">_</span>
           </div>
         </div>

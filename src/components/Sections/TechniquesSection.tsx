@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import { FiZap, FiEdit3, FiActivity } from 'react-icons/fi';
 import SectionLogo from '../UI/SectionLogo';
 
@@ -11,24 +12,25 @@ interface TechItem {
 }
 
 export default function TechniquesSection() {
+  const { t } = useTranslation();
   const container = useRef<HTMLDivElement>(null);
 
   const techniques: TechItem[] = [
     {
-      name: 'Zero-shot',
-      shortDesc: 'Instrucción directa sin ejemplos previos. Confía en el razonamiento base del modelo.',
+      name: t('techniques.t_0_name'),
+      shortDesc: t('techniques.t_0_desc'),
       icon: <FiZap />,
       color: '#71d8c5',
     },
     {
-      name: 'Few-shot',
-      shortDesc: 'Proveer ejemplos para replicar patrones complejos. Ideal para estandarizar tono y formato.',
+      name: t('techniques.t_1_name'),
+      shortDesc: t('techniques.t_1_desc'),
       icon: <FiEdit3 />,
       color: '#c7ddef',
     },
     {
-      name: 'Chain of Thought',
-      shortDesc: 'Descompone problemas lógicos en pasos secuenciales. Evita errores de cálculo inmediato.',
+      name: t('techniques.t_2_name'),
+      shortDesc: t('techniques.t_2_desc'),
       icon: <FiActivity />,
       color: '#3498db',
     }
@@ -43,8 +45,8 @@ export default function TechniquesSection() {
           lineHeight: 1.1,
           textAlign: 'center'
         }}>
-          Ingeniería de Prompts:<br />
-          <span className="text-gradient">Estrategias de Interacción</span>
+          {t('techniques.title_1')}<br />
+          <span className="text-gradient">{t('techniques.title_2')}</span>
         </h2>
         
         <div style={{ 

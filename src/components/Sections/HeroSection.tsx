@@ -1,9 +1,11 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useTranslation } from 'react-i18next';
 import SectionLogo from '../UI/SectionLogo';
 
 export default function HeroSection() {
+  const { t } = useTranslation();
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -42,8 +44,8 @@ export default function HeroSection() {
           maxWidth: '900px',
           letterSpacing: '-2px'
         }}>
-          Prompt Engineering:<br />
-          <span className="text-gradient">El Arte de Conversar con la IA</span>
+          {t('hero.title')}:<br />
+          <span className="text-gradient">{t('hero.subtitle')}</span>
         </h1>
         
         <p className="hero-element" style={{ 
@@ -58,7 +60,7 @@ export default function HeroSection() {
           lineHeight: 1.6,
           border: '1px solid rgba(255,255,255,0.05)'
         }}>
-          Maximizando la productividad profesional mediante la interacción estructurada y estratégica con Modelos de Lenguaje Grande.
+          {t('hero.desc')}
         </p>
       </div>
       <SectionLogo />

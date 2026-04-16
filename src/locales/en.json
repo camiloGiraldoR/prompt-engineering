@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "prev": "Previous Section",
+    "next": "Next Section",
+    "switch_lang": "Cambiar a Español"
+  },
+  "welcome": {
+    "status_ready": "STATUS: SYSTEM_READY",
+    "status_msg": "Starting in a few minutes...",
+    "title_chill": "Chill & Learn",
+    "title_pe": "Prompt Engineering",
+    "role": "Senior Technical Consultant",
+    "btn_start": "Let's Start"
+  },
+  "hero": {
+    "badge": "Mastering AI",
+    "title": "Prompt Engineering",
+    "subtitle": "The Art of Conversing with AI",
+    "desc": "Maximizing professional productivity through structured and strategic interaction with Large Language Models."
+  },
+  "definition": {
+    "title": "What is Prompt Engineering?",
+    "highlight_1": "It's not just writing;",
+    "highlight_2": "it's programming with words.",
+    "desc_1": "It's the systematic process of designing, refining, and optimizing the instructions (prompts) we give to Artificial Intelligence models to achieve specific, precise, and high-value results.",
+    "desc_2": "By mastering this technique, we transform generic and superficial outputs into precise, deep responses perfectly aligned with business objectives."
+  },
+  "anatomy": {
+    "title": "Anatomy of a Perfect Prompt",
+    "card_1_title": "Instruction",
+    "card_1_desc": "The specific task we want the model to perform.",
+    "card_2_title": "Context",
+    "card_2_desc": "External information or guidelines to orient the response.",
+    "card_3_title": "Input Data",
+    "card_3_desc": "The content the model must process or transform.",
+    "card_4_title": "Output Indicators",
+    "card_4_desc": "The format, tone, or constraints of the final result.",
+    "card_5_title": "Negative Prompting",
+    "card_5_desc": "What to avoid to prevent bias, vague answers, or hallucinations."
+  },
+  "rtcf": {
+    "title": "RTCF Framework",
+    "r_title": "Role",
+    "r_desc": "Defines AI identity (e.g., Marketing Expert).",
+    "t_title": "Task",
+    "t_desc": "The main action (e.g., Write an email).",
+    "c_title": "Context",
+    "c_desc": "Background and constraints (e.g., B2B Audience).",
+    "f_title": "Format",
+    "f_desc": "How you want the response (e.g., In bullet points).",
+    "badge": "Live Example",
+    "right_title": "Applying the Formula:",
+    "right_text_1": "\"Act as a ",
+    "right_text_2": "[Role: Nutritionist]",
+    "right_text_3": ". Create ",
+    "right_text_4": "[Task: a meal plan]",
+    "right_text_5": " for ",
+    "right_text_6": "[Context: a marathon runner]",
+    "right_text_7": ". Present the data ",
+    "right_text_8": "[Format: in a table]",
+    "right_text_9": ".\"",
+    "pro_tip": "Pro Tip:",
+    "pro_tip_desc": "Context is the difference between a generic answer and a professional solution."
+  },
+  "config": {
+    "title": "Configuration and Optimization",
+    "label": "Creativity vs. Rigor Level: ",
+    "desc_creative": "💡 Creative / Original",
+    "desc_strict": "⚖️ Precise / Technical",
+    "hint_1": "Think of it this way: An ",
+    "hint_bold_1": "Accountant",
+    "hint_2": " needs low temperature (0.1) to be exact; a ",
+    "hint_bold_2": "Writer",
+    "hint_3": " needs high temperature (0.9) to be original.",
+    "box_1_title": "Length Control (Tokens)",
+    "box_1_desc": "Limits the response size. More tokens mean higher cost and wait time.",
+    "box_2_title": "Economic Efficiency",
+    "box_2_desc": "A concise prompt reduces token usage, saving money on every interaction."
+  },
+  "techniques": {
+    "title_1": "Prompt Engineering:",
+    "title_2": "Interaction Strategies",
+    "t_0_name": "Zero-shot",
+    "t_0_desc": "Direct instruction with no prior examples. Relies on the model's base reasoning.",
+    "t_1_name": "Few-shot",
+    "t_1_desc": "Provide examples to replicate complex patterns. Ideal for standardizing tone and format.",
+    "t_2_name": "Chain of Thought",
+    "t_2_desc": "Breaks down logical problems into sequential steps. Avoids immediate calculation errors."
+  },
+  "safety": {
+    "title": "Safety & Governance",
+    "desc_1": "Additional critical risks that must be mitigated: ",
+    "a_0_t": "Toxicity",
+    "a_0_d": "Generation of offensive or policy-violating language.",
+    "a_1_t": "Hallucinations",
+    "a_1_d": "False claims presented as absolute facts.",
+    "a_2_t": "Prompt Injection",
+    "a_2_d": "Malicious technique to bypass system constraints.",
+    "a_3_t": "Exposure",
+    "a_3_d": "Risk of exposing sensitive corporate data or PII."
+  },
+  "best_practices": {
+    "title": "Best Practices",
+    "p_0": "Be clear and direct with instructions.",
+    "p_1": "Provide relevant and sufficient context.",
+    "p_2": "Use delimiters to separate sections.",
+    "p_3": "Specify the desired output format.",
+    "p_4": "Iterate and refine your prompts constantly."
+  },
+  "audience": {
+    "title": "Who is this talk for?",
+    "box_title": "All areas of the company.",
+    "box_desc": "Today, Prompt Engineering and Machine Learning are no longer exclusive tools for technical departments. AI is now horizontal.",
+    "c_1_t": "Continuous Collaboration",
+    "c_1_d": "From People to Finance, we optimize workflows in our day-to-day.",
+    "c_2_t": "Democratization of AI",
+    "c_2_d": "Anyone with an idea can enhance it through good prompt design."
+  },
+  "thanks": {
+    "title": "Thank You",
+    "qa_title": "Do you have any questions?",
+    "qa_desc": "This is the perfect time to clarify doubts, explore use cases, or delve deeper into any presentation topic.",
+    "q_1": "\"Artificial intelligence does not replace humans, ",
+    "q_2": "it amplifies their potential.",
+    "foot": "Camilo A. Giraldo Ramirez — Senior Technical Consultant"
+  }
+}

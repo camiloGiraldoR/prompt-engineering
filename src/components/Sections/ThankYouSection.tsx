@@ -2,11 +2,13 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import { FiMessageCircle } from 'react-icons/fi';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function ThankYouSection() {
+  const { t } = useTranslation();
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -49,7 +51,7 @@ export default function ThankYouSection() {
             fontWeight: 900,
             filter: 'drop-shadow(0 0 30px rgba(113, 216, 197, 0.5))'
           }}>
-            Gracias
+            {t('thanks.title')}
           </h1>
         </div>
 
@@ -72,10 +74,10 @@ export default function ThankYouSection() {
           </div>
           <div>
             <h3 style={{ fontSize: '1.2rem', color: '#fff', marginBottom: '0.3rem', textTransform: 'uppercase', letterSpacing: '1px' }}>
-              ¿Tienes alguna pregunta?
+              {t('thanks.qa_title')}
             </h3>
             <p style={{ fontSize: '1rem', color: 'var(--text-muted)', lineHeight: 1.5 }}>
-              Es el momento perfecto para aclarar dudas, explorar casos de uso o profundizar en cualquier tema de la presentación.
+              {t('thanks.qa_desc')}
             </p>
           </div>
         </div>
@@ -102,8 +104,8 @@ export default function ThankYouSection() {
             fontStyle: 'italic',
             fontWeight: 300
           }}>
-            "La inteligencia artificial no reemplaza al ser humano,{' '}
-            <strong style={{ color: 'var(--brand-mint)', fontStyle: 'normal' }}>amplifica su potencial.</strong>"
+            {t('thanks.q_1')}
+            <strong style={{ color: 'var(--brand-mint)', fontStyle: 'normal' }}>{t('thanks.q_2')}</strong>"
           </p>
         </blockquote>
 
@@ -115,7 +117,7 @@ export default function ThankYouSection() {
           borderRadius: '8px',
         }}>
           <p style={{ fontSize: '0.9rem', color: 'var(--brand-mint)', fontFamily: 'monospace', letterSpacing: '2px', textTransform: 'uppercase' }}>
-            Camilo A. Giraldo Ramirez &mdash; Senior Technical Consultant
+            {t('thanks.foot')}
           </p>
         </div>
 

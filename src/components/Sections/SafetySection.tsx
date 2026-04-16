@@ -1,10 +1,12 @@
 import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
+import { useTranslation } from 'react-i18next';
 import { FiAlertTriangle } from 'react-icons/fi';
 import SectionLogo from '../UI/SectionLogo';
 
 export default function SafetySection() {
+  const { t } = useTranslation();
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -22,18 +24,18 @@ export default function SafetySection() {
   }, { scope: container });
 
   const alerts = [
-    { title: 'Toxicity', desc: 'Generación de lenguaje ofensivo o en contra de políticas.' },
-    { title: 'Hallucinations', desc: 'Afirmaciones falsas presentadas como hechos absolutos.' },
-    { title: 'Prompt Injection', desc: 'Técnica maliciosa para evadir restricciones del sistema.' },
-    { title: 'Exposure', desc: 'Riesgo de revelar datos corporativos sensibles o PII.' }
+    { title: t('safety.a_0_t'), desc: t('safety.a_0_d') },
+    { title: t('safety.a_1_t'), desc: t('safety.a_1_d') },
+    { title: t('safety.a_2_t'), desc: t('safety.a_2_d') },
+    { title: t('safety.a_3_t'), desc: t('safety.a_3_d') }
   ];
 
   return (
     <section ref={container} className="section-container">
       <div className="section-content">
-        <h2 className="text-mask" style={{ fontSize: '5rem', marginBottom: '1rem', lineHeight: 1, textAlign: 'center' }}>Safety & Governance</h2>
+        <h2 className="text-mask" style={{ fontSize: '5rem', marginBottom: '1rem', lineHeight: 1, textAlign: 'center' }}>{t('safety.title')}</h2>
         <p style={{ color: 'var(--text-muted)', marginBottom: '3rem', fontSize: '1.2rem' }}>
-          Riesgos críticos adicionales que deben mitigarse: <span style={{ color: 'var(--brand-mint)' }}>Jailbreaking</span>, <span style={{ color: 'var(--brand-mint)' }}>Prompt Leaking</span> y <span style={{ color: 'var(--brand-mint)' }}>Data Poisoning</span>.
+          {t('safety.desc_1')}<span style={{ color: 'var(--brand-mint)' }}>Jailbreaking</span>, <span style={{ color: 'var(--brand-mint)' }}>Prompt Leaking</span> y <span style={{ color: 'var(--brand-mint)' }}>Data Poisoning</span>.
         </p>
 
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '1.5rem', width: '100%' }}>

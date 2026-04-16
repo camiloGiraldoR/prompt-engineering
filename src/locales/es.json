@@ -1,0 +1,127 @@
+{
+  "nav": {
+    "prev": "Sección Anterior",
+    "next": "Siguiente Sección",
+    "switch_lang": "Switch to English"
+  },
+  "welcome": {
+    "status_ready": "STATUS: SYSTEM_READY",
+    "status_msg": "En unos minutos daremos inicio...",
+    "title_chill": "Chill & Learn",
+    "title_pe": "Prompt Engineering",
+    "role": "Senior Technical Consultant",
+    "btn_start": "Comencemos"
+  },
+  "hero": {
+    "badge": "Dominando la IA",
+    "title": "Ingeniería de Prompts",
+    "subtitle": "El Arte de Conversar con la IA",
+    "desc": "Maximizando la productividad profesional mediante la interacción estructurada y estratégica con Modelos de Lenguaje Grande."
+  },
+  "definition": {
+    "title": "¿Qué es Prompt Engineering?",
+    "highlight_1": "No es solo escribir;",
+    "highlight_2": "es programar con palabras.",
+    "desc_1": "Es el proceso sistemático de diseñar, refinar y optimizar las instrucciones (prompts) que damos a los modelos de Inteligencia Artificial para obtener resultados específicos, precisos y de alto valor.",
+    "desc_2": "Al dominar esta técnica, transformamos resultados genéricos y superficiales en respuestas precisas, profundas y perfectamente alineadas con los objetivos empresariales."
+  },
+  "anatomy": {
+    "title": "Anatomía de un Prompt Perfecto",
+    "card_1_title": "Instrucción",
+    "card_1_desc": "La tarea específica que queremos que el modelo realice.",
+    "card_2_title": "Contexto",
+    "card_2_desc": "Información externa o guías para orientar la respuesta.",
+    "card_3_title": "Datos de Entrada",
+    "card_3_desc": "El contenido que el modelo debe procesar o transformar.",
+    "card_4_title": "Indicadores de Salida",
+    "card_4_desc": "El formato, tono o restricciones del resultado final.",
+    "card_5_title": "Prompting Negativo",
+    "card_5_desc": "Lo que se debe evitar para prevenir sesgos, respuestas vagas o alucinaciones."
+  },
+  "rtcf": {
+    "title": "Marco RTCF",
+    "r_title": "Rol",
+    "r_desc": "Define la identidad de la IA (ej. Experto en Marketing).",
+    "t_title": "Tarea",
+    "t_desc": "La acción principal (ej. Escribe un correo).",
+    "c_title": "Contexto",
+    "c_desc": "Antecedentes y restricciones (ej. Audiencia B2B).",
+    "f_title": "Formato",
+    "f_desc": "Cómo quieres la respuesta (ej. En viñetas).",
+    "badge": "Ejemplo Vivo",
+    "right_title": "Aplicando la Fórmula:",
+    "right_text_1": "\"Actúa como ",
+    "right_text_2": "[Rol: Nutricionista]",
+    "right_text_3": ". Crea ",
+    "right_text_4": "[Tarea: un plan de comidas]",
+    "right_text_5": " para ",
+    "right_text_6": "[Contexto: un maratonista]",
+    "right_text_7": ". Presenta los datos ",
+    "right_text_8": "[Formato: en una tabla]",
+    "right_text_9": ".\"",
+    "pro_tip": "Pro Tip:",
+    "pro_tip_desc": "El contexto es la diferencia entre una respuesta genérica y una solución profesional."
+  },
+  "config": {
+    "title": "Configuración y Optimización",
+    "label": "Nivel de Creatividad vs. Rigor: ",
+    "desc_creative": "💡 Creativo / Original",
+    "desc_strict": "⚖️ Preciso / Técnico",
+    "hint_1": "Piénsalo así: Un ",
+    "hint_bold_1": "Contador",
+    "hint_2": " necesita temperatura baja (0.1) para ser exacto; un ",
+    "hint_bold_2": "Escritor",
+    "hint_3": " necesita temperatura alta (0.9) para ser original.",
+    "box_1_title": "Control de Longitud (Tokens)",
+    "box_1_desc": "Limita el tamaño de la respuesta. A más tokens, mayor es el costo y el tiempo de espera.",
+    "box_2_title": "Eficiencia Económica",
+    "box_2_desc": "Un prompt conciso reduce el uso de tokens, ahorrando dinero en cada interacción."
+  },
+  "techniques": {
+    "title_1": "Ingeniería de Prompts:",
+    "title_2": "Estrategias de Interacción",
+    "t_0_name": "Zero-shot",
+    "t_0_desc": "Instrucción directa sin ejemplos previos. Confía en el razonamiento base del modelo.",
+    "t_1_name": "Few-shot",
+    "t_1_desc": "Proveer ejemplos para replicar patrones complejos. Ideal para estandarizar tono y formato.",
+    "t_2_name": "Chain of Thought",
+    "t_2_desc": "Descompone problemas lógicos en pasos secuenciales. Evita errores de cálculo inmediato."
+  },
+  "safety": {
+    "title": "Safety & Governance",
+    "desc_1": "Riesgos críticos adicionales que deben mitigarse: ",
+    "a_0_t": "Toxicity",
+    "a_0_d": "Generación de lenguaje ofensivo o en contra de políticas.",
+    "a_1_t": "Hallucinations",
+    "a_1_d": "Afirmaciones falsas presentadas como hechos absolutos.",
+    "a_2_t": "Prompt Injection",
+    "a_2_d": "Técnica maliciosa para evadir restricciones del sistema.",
+    "a_3_t": "Exposure",
+    "a_3_d": "Riesgo de revelar datos corporativos sensibles o PII."
+  },
+  "best_practices": {
+    "title": "Best Practices",
+    "p_0": "Sé claro y directo con las instrucciones.",
+    "p_1": "Proporciona contexto relevante y suficiente.",
+    "p_2": "Utiliza delimitadores para separar secciones.",
+    "p_3": "Especifica el formato de salida deseado.",
+    "p_4": "Itera y refina tus prompts constantemente."
+  },
+  "audience": {
+    "title": "¿A quién va dirigida esta charla?",
+    "box_title": "A todas las áreas de la empresa.",
+    "box_desc": "En la actualidad, el Prompt Engineering y el Machine Learning han dejado de ser herramientas exclusivas de departamentos técnicos. Hoy en día, la IA es horizontal.",
+    "c_1_t": "Colaboración Continua",
+    "c_1_d": "Desde People hasta Finance, optimizamos flujos de trabajo en nuestro día a día.",
+    "c_2_t": "Democratización de la IA",
+    "c_2_d": "Cualquier persona con una idea puede potenciarla mediante un buen diseño de prompt."
+  },
+  "thanks": {
+    "title": "Gracias",
+    "qa_title": "¿Tienes alguna pregunta?",
+    "qa_desc": "Es el momento perfecto para aclarar dudas, explorar casos de uso o profundizar en cualquier tema de la presentación.",
+    "q_1": "\"La inteligencia artificial no reemplaza al ser humano, ",
+    "q_2": "amplifica su potencial.",
+    "foot": "Camilo A. Giraldo Ramirez — Senior Technical Consultant"
+  }
+}

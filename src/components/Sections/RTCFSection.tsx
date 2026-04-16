@@ -2,12 +2,14 @@ import { useRef } from 'react';
 import gsap from 'gsap';
 import { useGSAP } from '@gsap/react';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+import { useTranslation } from 'react-i18next';
 import { FiUser, FiCheckSquare, FiInfo, FiLayout, FiArrowRight } from 'react-icons/fi';
 import SectionLogo from '../UI/SectionLogo';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function RTCFSection() {
+  const { t } = useTranslation();
   const container = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
@@ -36,16 +38,16 @@ export default function RTCFSection() {
   }, { scope: container });
 
   const framework = [
-    { icon: <FiUser />, letter: 'R', title: 'Rol', desc: 'Define la identidad de la IA (ej. Experto en Marketing).' },
-    { icon: <FiCheckSquare />, letter: 'T', title: 'Tarea', desc: 'La acción principal (ej. Escribe un correo).' },
-    { icon: <FiInfo />, letter: 'C', title: 'Contexto', desc: 'Antecedentes y restricciones (ej. Audiencia B2B).' },
-    { icon: <FiLayout />, letter: 'F', title: 'Formato', desc: 'Cómo quieres la respuesta (ej. En viñetas).' },
+    { icon: <FiUser />, letter: 'R', title: t('rtcf.r_title'), desc: t('rtcf.r_desc') },
+    { icon: <FiCheckSquare />, letter: 'T', title: t('rtcf.t_title'), desc: t('rtcf.t_desc') },
+    { icon: <FiInfo />, letter: 'C', title: t('rtcf.c_title'), desc: t('rtcf.c_desc') },
+    { icon: <FiLayout />, letter: 'F', title: t('rtcf.f_title'), desc: t('rtcf.f_desc') },
   ];
 
   return (
     <section ref={container} className="section-container">
       <div className="section-content" style={{ maxWidth: '1100px' }}>
-        <h2 className="rtcf-left-item text-mask" style={{ fontSize: '3.5rem', marginBottom: '2.5rem', textAlign: 'center', lineHeight: 1 }}>Marco RTCF</h2>
+        <h2 className="rtcf-left-item text-mask" style={{ fontSize: '3.5rem', marginBottom: '2.5rem', textAlign: 'center', lineHeight: 1 }}>{t('rtcf.title')}</h2>
         
         <div style={{ 
           display: 'grid', 
@@ -100,22 +102,23 @@ export default function RTCFSection() {
                fontWeight: 800,
                textTransform: 'uppercase'
              }}>
-               Ejemplo Vivo
+               {t('rtcf.badge')}
              </div>
              
              <h4 style={{ color: 'var(--brand-mint)', marginBottom: '1.5rem', fontSize: '1.2rem', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-               <FiArrowRight /> Aplicando la Fórmula:
+               <FiArrowRight /> {t('rtcf.right_title')}
              </h4>
              
              <div style={{ fontSize: '1.2rem', color: 'var(--text-main)', lineHeight: 1.8, background: 'rgba(0,0,0,0.2)', padding: '1.5rem', borderRadius: '8px', borderLeft: '2px solid var(--brand-sky)' }}>
-                "Actúa como <span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>[Rol: Nutricionista]</span>. 
-                Crea <span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>[Tarea: un plan de comidas]</span> 
-                para <span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>[Contexto: un maratonista]</span>. 
-                Presenta los datos <span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>[Formato: en una tabla]</span>."
+                {t('rtcf.right_text_1')}<span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>{t('rtcf.right_text_2')}</span>
+                {t('rtcf.right_text_3')}<span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>{t('rtcf.right_text_4')}</span> 
+                {t('rtcf.right_text_5')}<span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>{t('rtcf.right_text_6')}</span>
+                {t('rtcf.right_text_7')}<span style={{ color: 'var(--brand-mint)', fontWeight: 700 }}>{t('rtcf.right_text_8')}</span>
+                {t('rtcf.right_text_9')}
              </div>
 
              <div style={{ marginTop: '1.5rem', padding: '1rem', borderTop: '1px solid rgba(255,255,255,0.1)', fontSize: '0.85rem', color: 'var(--text-muted)' }}>
-               💡 <strong>Pro Tip:</strong> El contexto es la diferencia entre una respuesta genérica y una solución profesional.
+               💡 <strong>{t('rtcf.pro_tip')}</strong> {t('rtcf.pro_tip_desc')}
              </div>
           </div>
         </div>
